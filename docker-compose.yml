@@ -7,14 +7,21 @@ services:
       - "5000:5000"
     networks:
       - app-network
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:5000/')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
 
   frontend:
-    image: ghcr.io/devops-cicd-demo1/frontend:1.0
+    image: ghcr.io/devops-cicd-demo1/frontend:2.0
     container_name: frontend-prod
     ports:
       - "3000:80"
     depends_on:
-      - backend
+      backend:
+        condition: service_healthy
     networks:
       - app-network
 
