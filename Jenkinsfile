@@ -3,9 +3,11 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
+        stage('Check Docker') {
             steps {
-                checkout scm
+                bat 'where docker'
+                bat 'docker --version'
+                bat 'docker compose version'
             }
         }
 
