@@ -3,29 +3,27 @@ pipeline {
 
     stages {
 
-        stage('Check Docker') {
+        stage('Checkout') {
             steps {
-                bat 'where docker'
-                bat 'docker --version'
-                bat 'docker compose version'
+                checkout scm
             }
         }
 
         stage('Pull Images') {
             steps {
-                bat 'docker compose pull'
+                bat '"C:\\Users\\georg\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker-compose.exe" pull'
             }
         }
 
         stage('Deploy') {
             steps {
-                bat 'docker compose up -d'
+                bat '"C:\\Users\\georg\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker-compose.exe" up -d'
             }
         }
 
         stage('Verify') {
             steps {
-                bat 'docker compose ps'
+                bat '"C:\\Users\\georg\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker-compose.exe" ps'
             }
         }
 
