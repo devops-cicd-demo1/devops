@@ -1,0 +1,23 @@
+services:
+
+  backend:
+    image: ghcr.io/devops-cicd-demo1/backend:1.0
+    container_name: backend-prod
+    ports:
+      - "5000:5000"
+    networks:
+      - app-network
+
+  frontend:
+    image: ghcr.io/devops-cicd-demo1/frontend:1.0
+    container_name: frontend-prod
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
