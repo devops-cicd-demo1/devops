@@ -14,7 +14,7 @@ services:
       start_period: 10s
 
   frontend:
-    image: ghcr.io/devops-cicd-demo1/frontend:2.0
+    image: ghcr.io/devops-cicd-demo1/frontend:3.0
     ports:
       - "3000:80"
     depends_on:
